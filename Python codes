@@ -138,3 +138,39 @@ class Solution:
                 stack.pop()
     
         return len(stack) == 0
+class Solution:
+    def mySqrt(self, x: int) -> int:
+       
+        if x == 0 or x == 1:
+            return x
+        
+        left, right = 1, x
+        result = 0
+        
+        while left <= right:
+            mid = left + (right - left) // 2
+            square = mid * mid
+            
+            if square == x:
+                return mid
+            elif square < x:
+                result = mid  # Potential answer
+                left = mid + 1
+            else:
+                right = mid - 1
+        
+        return result
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        n = len(digits)
+    
+    # Start from the last digit and move backwards
+        for i in range(n - 1, -1, -1):
+            if digits[i] < 9:
+                digits[i] += 1
+                return digits
+            else:
+                digits[i] = 0
+        
+        # If we're here, it means all digits were 9 (e.g., 999 -> 1000)
+        return [1] + digits
