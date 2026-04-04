@@ -1,0 +1,11 @@
+class Solution:
+    def shiftGrid(self, grid, k):
+        m, n = len(grid), len(grid[0])
+        total = m * n
+        flat = [grid[i][j] for i in range(m) for j in range(n)]
+        k %= total
+        result = []
+        for i in range(m):
+            row = flat[i * n:(i + 1) * n]
+            result.append(row)
+        return result
