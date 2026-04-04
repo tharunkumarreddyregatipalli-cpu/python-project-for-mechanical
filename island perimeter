@@ -1,0 +1,53 @@
+class Solution:
+    def islandPerimeter(self, grid):
+        rows = len(grid)
+        cols = len(grid[0])
+        perimeter = 0
+
+        for i in range(rows):
+            for j in range(cols):
+                if grid[i][j] == 1:  # Land cell found
+                    perimeter += 4  # Each land cell contributes 4 edges
+
+                    # Check UP
+                    if i > 0 and grid[i - 1][j] == 1:
+                        perimeter -= 1
+
+                    # Check DOWN
+                    if i < rows - 1 and grid[i + 1][j] == 1:
+                        perimeter -= 1
+
+                    # Check LEFT
+                    if j > 0 and grid[i][j - 1] == 1:
+                        perimeter -= 1
+
+                    # Check RIGHT
+                    if j < cols - 1 and grid[i][j + 1] == 1:
+                        perimeter -= 1
+
+        return perimeter
+
+
+def displayGrid(grid):
+    print("Grid:")
+    for row in grid:
+        print(row)
+    print()
+
+
+def main():
+    sol = Solution()
+
+    # Test Case 1
+    grid1 = [
+        [0, 1, 0, 0],
+        [1, 1, 1, 0],
+        [0, 1, 0, 0],
+        [1, 1, 0, 0]
+    ]
+    displayGrid(grid1)
+    print("Perimeter:", sol.islandPerimeter(grid1))  # 16
+
+
+if __name__ == "__main__":
+    main()
